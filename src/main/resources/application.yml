@@ -13,3 +13,10 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: ${OAUTH2_SERVER}/
+
+springdoc:
+  swagger-ui:
+    oauth:
+      useBasicAuthenticationWithAccessCodeGrant: true
+  oAuthFlow:
+    tokenUrl: ${OAUTH2_SERVER}/oauth2/token

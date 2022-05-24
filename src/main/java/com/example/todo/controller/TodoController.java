@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/todos")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "security_auth")
 public class TodoController {
     private final TodoMapper todoMapper;
     private final TodoService todoService;
