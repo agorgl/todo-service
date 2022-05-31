@@ -12,6 +12,8 @@ import com.example.todo.exception.ResourceNotFoundException;
 import com.example.todo.mapper.TodoMapper;
 import com.example.todo.service.TodoService;
 
+import org.springdoc.core.converters.models.PageableAsQueryParam;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,9 @@ public class TodoController {
     }
 
     @GetMapping
-    public List<TodoDto> list() {
-        return todoService.getAllTodos()
+    @PageableAsQueryParam
+    public List<TodoDto> list(Pageable pageable) {
+        return todoService.getAllTodos(pageable)
             .stream()
             .map(todoMapper::toDto)
             .collect(Collectors.toList());

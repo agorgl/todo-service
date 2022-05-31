@@ -7,6 +7,7 @@ import com.example.todo.exception.ResourceNotFoundException;
 import com.example.todo.model.Todo;
 import com.example.todo.repository.TodoRepository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +24,8 @@ public class TodoService {
     }
 
     @Transactional(readOnly = true)
-    public List<Todo> getAllTodos() {
-        return todoRepository.findAll();
+    public List<Todo> getAllTodos(Pageable pageable) {
+        return todoRepository.findAll(pageable).getContent();
     }
 
     @Transactional(readOnly = true)
